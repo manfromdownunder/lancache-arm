@@ -1,5 +1,6 @@
 # Lancache Monolithic for ARM
 Original Code from https://github.com/jrcichra/lancache-rpi 
+Removed SNI Proxy (Obsolete)
 
 (Unofficial ARM Version) - A monolithic lancache service capable of caching all CDNs in a single instance
 # Note
