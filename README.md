@@ -1,6 +1,6 @@
 # Lancache Monolithic for ARM
 
-![Docker Pulls](https://img.shields.io/docker/pulls/jrcichra/lancachenet-monolithic?label=Monolithic) ![Docker Pulls](https://img.shields.io/docker/pulls/jrcichra/lancachenet-lancache-dns?label=Lancache-dns) ![Docker Pulls](https://img.shields.io/docker/pulls/jrcichra/lancachenet-sniproxy?label=Sniproxy) ![Docker Pulls](https://img.shields.io/docker/pulls/jrcichra/lancachenet-generic?label=Generic)
+![Docker Pulls](https://img.shields.io/docker/pulls/manfromdownunder/lancachenet-monolithic?label=Monolithic) ![Docker Pulls](https://img.shields.io/docker/pulls/manfromdownunder/lancachenet-lancache-dns?label=Lancache-dns) ![Docker Pulls](https://img.shields.io/docker/pulls/manfromdownunder/lancachenet-sniproxy?label=Sniproxy) ![Docker Pulls](https://img.shields.io/docker/pulls/manfromdownunder/lancachenet-generic?label=Generic)
 
 (Unofficial ARM Version) - A monolithic lancache service capable of caching all CDNs in a single instance
 # Note
@@ -9,8 +9,8 @@
 # Installation
 - To install:
   -  If you don't already have docker and docker-compose, run `sudo apt install docker.io docker-compose`
-  - `sudo git clone https://github.com/jrcichra/lancache-rpi.git`
-  - `cd lancache-rpi`
+  - `sudo git clone https://github.com/manfromdownudner/lancache-arm.git`
+  - `cd lancache-arm`
   - `nano .env`
   - In the .env, follow annotations and modify LANCACHE_IP and DNS_BIND_IP to be the IP of the interface you want to expose this on. `0.0.0.0` might work but I recommend a single interface.
   - `docker-compose up -d`
