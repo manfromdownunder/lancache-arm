@@ -9,7 +9,7 @@ Removed SNI Proxy (Obsolete)
 # Installation
 - To install:
   -  If you don't already have docker and docker-compose, run `sudo apt install docker.io docker-compose`
-  - `sudo git clone https://github.com/manfromdownudner/lancache-arm.git`
+  - `sudo git clone https://github.com/manfromdownunder/lancache-arm.git`
   - `cd lancache-arm`
   - `nano .env`
   - In the .env, follow annotations and modify LANCACHE_IP and DNS_BIND_IP to be the IP of the interface you want to expose this on. `0.0.0.0` might work but I recommend a single interface.
