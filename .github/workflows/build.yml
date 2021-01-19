@@ -66,11 +66,20 @@ jobs:
           cat Dockerfile
           docker buildx build --platform linux/arm/v7,linux/arm64 -t manfromdownunder/lancachenet-ubuntu-nginx --push .
           cd ..
+      - name: Build & Push lancachenet/generic
+        run: |
+          git clone https://github.com/lancachenet/generic.git
+          cd generic
+          sed -i '1cFROM manfromdownunder/lancachenet-ubuntu-nginx' Dockerfile
+          cat Dockerfile
+          sed -i '29cproxy_max_temp_file_size 1024m;' overlay/etc/nginx/sites-available/generic.conf.d/root/20_cache.conf
+          docker buildx build --platform linux/arm/v7,linux/arm64 -t manfromdownunder/lancachenet-generic --push .
+          cd ..
       - name: Build & Push lancachenet/monolithic
         run: |
           git clone https://github.com/lancachenet/monolithic.git
           cd monolithic
-          sed -i '1cFROM manfromdownunder/lancachenet-ubuntu' Dockerfile
+          sed -i '1cFROM manfromdownunder/lancachenet-generic' Dockerfile
           cat Dockerfile
           docker buildx build --platform linux/arm/v7,linux/arm64 -t manfromdownunder/lancachenet-monolithic --push .
           cd ..
