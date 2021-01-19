@@ -1,6 +1,5 @@
 # Lancache Monolithic for ARM
-
-![Docker Pulls](https://img.shields.io/docker/pulls/manfromdownunder/lancachenet-monolithic?label=Monolithic) ![Docker Pulls](https://img.shields.io/docker/pulls/manfromdownunder/lancachenet-lancache-dns?label=Lancache-dns) ![Docker Pulls](https://img.shields.io/docker/pulls/manfromdownunder/lancachenet-sniproxy?label=Sniproxy) ![Docker Pulls](https://img.shields.io/docker/pulls/manfromdownunder/lancachenet-generic?label=Generic)
+Original Code from https://github.com/jrcichra/lancache-rpi 
 
 (Unofficial ARM Version) - A monolithic lancache service capable of caching all CDNs in a single instance
 # Note
