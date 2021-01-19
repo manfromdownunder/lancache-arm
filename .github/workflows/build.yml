@@ -62,38 +62,38 @@ jobs:
         run: |
           git clone https://github.com/lancachenet/ubuntu-nginx.git
           cd ubuntu-nginx
-          sed -i '1cFROM jrcichra/lancachenet-ubuntu' Dockerfile
+          sed -i '1cFROM manfromdownunder/lancachenet-ubuntu' Dockerfile
           cat Dockerfile
-          docker buildx build --platform linux/arm/v7,linux/arm64 -t manfromdowunder/lancachenet-ubuntu-nginx --push .
+          docker buildx build --platform linux/arm/v7,linux/arm64 -t manfromdownunder/lancachenet-ubuntu-nginx --push .
           cd ..
       - name: Build & Push lancachenet/generic
         run: |
           git clone https://github.com/lancachenet/generic.git
           cd generic
-          sed -i '1cFROM jrcichra/lancachenet-ubuntu-nginx' Dockerfile
+          sed -i '1cFROM manfromdownunder/lancachenet-ubuntu-nginx' Dockerfile
           cat Dockerfile
           sed -i '29cproxy_max_temp_file_size 1024m;' overlay/etc/nginx/sites-available/generic.conf.d/root/20_cache.conf
-          docker buildx build --platform linux/arm/v7,linux/arm64 -t manfromdowunder/lancachenet-generic --push .
+          docker buildx build --platform linux/arm/v7,linux/arm64 -t manfromdownunder/lancachenet-generic --push .
           cd ..
       - name: Build & Push lancachenet/monolithic
         run: |
           git clone https://github.com/lancachenet/monolithic.git
           cd monolithic
-          sed -i '1cFROM jrcichra/lancachenet-generic' Dockerfile
+          sed -i '1cFROM manfromdownunder/lancachenet-generic' Dockerfile
           cat Dockerfile
-          docker buildx build --platform linux/arm/v7,linux/arm64 -t manfromdowunder/lancachenet-monolithic --push .
+          docker buildx build --platform linux/arm/v7,linux/arm64 -t manfromdownunder/lancachenet-monolithic --push .
           cd ..
       - name: Build & Push lancachenet/sniproxy
         run: |
           git clone https://github.com/lancachenet/sniproxy.git
           cd sniproxy
-          docker buildx build --platform linux/arm/v7,linux/arm64 -t manfromdowunder/lancachenet-sniproxy --push .
+          docker buildx build --platform linux/arm/v7,linux/arm64 -t manfromdownunder/lancachenet-sniproxy --push .
           cd ..
       - name: Build & Push lancachenet/lancache-dns
         run: |
           git clone https://github.com/lancachenet/lancache-dns.git
           cd lancache-dns
-          sed -i '1cFROM jrcichra/lancachenet-ubuntu' Dockerfile
+          sed -i '1cFROM manfromdownunder/lancachenet-ubuntu' Dockerfile
           cat Dockerfile
-          docker buildx build --platform linux/arm/v7,linux/arm64 -t manfromdowunder/lancachenet-lancache-dns --push .
+          docker buildx build --platform linux/arm/v7,linux/arm64 -t manfromdownunder/lancachenet-lancache-dns --push .
           cd ..
