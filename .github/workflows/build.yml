@@ -52,12 +52,12 @@ jobs:
           cd ..
           rm -rf nginx-proxy
           rm -rf ~/go/src/github.com/ddollar/forego/
-      - name: Build & Push lancachenet/ubuntu
-        run: |
-          git clone https://github.com/lancachenet/ubuntu.git
-          cd ubuntu
-          docker buildx build --platform linux/arm/v7,linux/arm64 -t manfromdownunder/lancachenet-ubuntu --push .
-          cd ..
+      #- name: Build & Push lancachenet/ubuntu
+        #run: |
+          #git clone https://github.com/lancachenet/ubuntu.git
+          #cd ubuntu
+          #docker buildx build --platform linux/arm/v7,linux/arm64 -t manfromdownunder/lancachenet-ubuntu --push .
+          #cd ..
       - name: Build & Push lancachenet/ubuntu-nginx
         run: |
           git clone https://github.com/lancachenet/ubuntu-nginx.git
@@ -83,12 +83,12 @@ jobs:
           cat Dockerfile
           docker buildx build --platform linux/arm/v7,linux/arm64 -t manfromdowunder/lancachenet-monolithic --push .
           cd ..
-      - name: Build & Push lancachenet/sniproxy
-        run: |
-          git clone https://github.com/lancachenet/sniproxy.git
-          cd sniproxy
-          docker buildx build --platform linux/arm/v7,linux/arm64 -t manfromdowunder/lancachenet-sniproxy --push .
-          cd ..
+      #- name: Build & Push lancachenet/sniproxy
+        #run: |
+          #git clone https://github.com/lancachenet/sniproxy.git
+          #cd sniproxy
+          #docker buildx build --platform linux/arm/v7,linux/arm64 -t manfromdowunder/lancachenet-sniproxy --push .
+          #cd ..
       - name: Build & Push lancachenet/lancache-dns
         run: |
           git clone https://github.com/lancachenet/lancache-dns.git
