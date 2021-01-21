@@ -5,8 +5,7 @@ services:
     env_file: .env
     ports:
       - ${DNS_BIND_IP}:53:53/udp
-      - ${DNS_BIND_IP}:53:53/tcp
-      volumes:
+    volumes:
       - /dev/null:/var/log/named/queries.log  #Mount file to dev/null to disable DNS query logging. Comment out to enable BIND logging
       - /dev/null:/var/log/named/queries.log.0  #Mount file to dev/null to disable DNS query logging. Comment out to enable BIND logging
       - /dev/null:/var/log/named/queries.log.1  #Mount file to dev/null to disable DNS query logging. Comment out to enable BIND logging
