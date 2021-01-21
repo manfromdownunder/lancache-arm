@@ -6,10 +6,10 @@ services:
     ports:
       - ${DNS_BIND_IP}:53:53/udp
       volumes:
-      - /dev/null:/var/log/named/queries.log
-      - /dev/null:/var/log/named/queries.log.0
-      - /dev/null:/var/log/named/queries.log.1
-      - /dev/null:/var/log/named/queries.log.2
+      - /dev/null:/var/log/named/queries.log  #Mount file to dev/null to disable DNS query logging. Comment out to enable BIND logging
+      - /dev/null:/var/log/named/queries.log.0  #Mount file to dev/null to disable DNS query logging. Comment out to enable BIND logging
+      - /dev/null:/var/log/named/queries.log.1  #Mount file to dev/null to disable DNS query logging. Comment out to enable BIND logging
+      - /dev/null:/var/log/named/queries.log.2  #Mount file to dev/null to disable DNS query logging. Comment out to enable BIND logging
     restart: always
   monolithic:
     image: manfromdownunder/lancachenet-monolithic:latest ## Pulling monolithic for arm
