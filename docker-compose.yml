@@ -19,4 +19,4 @@ services:
     restart: always
     volumes:
       - ${CACHE_ROOT}/cache:/data/cache
-      - ${CACHE_ROOT}/logs:-dev/null
+      - ${CACHE_ROOT}/logs:/data/logs
