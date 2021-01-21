@@ -5,6 +5,11 @@ services:
     env_file: .env
     ports:
       - ${DNS_BIND_IP}:53:53/udp
+      volumes:
+      - /dev/null:/var/log/named/queries.log
+      - /dev/null:/var/log/named/queries.log.0
+      - /dev/null:/var/log/named/queries.log.1
+      - /dev/null:/var/log/named/queries.log.2
     restart: always
   monolithic:
     image: manfromdownunder/lancachenet-monolithic:latest ## Pulling monolithic for arm
@@ -14,4 +19,4 @@ services:
     restart: always
     volumes:
       - ${CACHE_ROOT}/cache:/data/cache
-      - ${CACHE_ROOT}/logs:/data/logs
+      - ${CACHE_ROOT}/logs:-dev/null
