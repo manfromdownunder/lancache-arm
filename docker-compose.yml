@@ -10,13 +10,14 @@ services:
     #  - /dev/null:/var/log/named/queries.log.0  #Mount file to dev/null to disable DNS query logging. Comment out to enable BIND logging
     #  - /dev/null:/var/log/named/queries.log.1  #Mount file to dev/null to disable DNS query logging. Comment out to enable BIND logging
     #  - /dev/null:/var/log/named/queries.log.2  #Mount file to dev/null to disable DNS query logging. Comment out to enable BIND logging
-    restart: always
+    restart: unless-stopped
   monolithic:
     image: manfromdownunder/lancachenet-monolithic:latest ## Pulling monolithic for arm
     env_file: .env
     ports:
       - 80:80/tcp
-    restart: always
+      - 443:443/tcp
+    restart: unless-stopped
     volumes:
       - ${CACHE_ROOT}/cache:/data/cache
       - ${CACHE_ROOT}/logs:/data/logs
