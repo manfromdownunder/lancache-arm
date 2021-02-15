@@ -67,9 +67,6 @@ jobs:
           cd ubuntu-nginx
           sed -i '1cFROM manfromdownunder/lancachenet-ubuntu' Dockerfile
           cat Dockerfile
-          docker run --rm --privileged multiarch/qemu-user-static --reset -p yes
-          docker buildx create --name multiarch --driver docker-container --use
-          docker buildx inspect --bootstrap    
           docker buildx build --platform linux/arm/v7,linux/arm64 -t manfromdownunder/lancachenet-ubuntu-nginx --push .
           cd ..
       - name: Build & Push lancachenet/generic
