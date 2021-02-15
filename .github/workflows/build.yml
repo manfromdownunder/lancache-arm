@@ -65,7 +65,7 @@ jobs:
           sed -i '1cFROM manfromdownunder/lancachenet-ubuntu' Dockerfile
           cat Dockerfile
           docker run --rm --privileged multiarch/qemu-user-static --reset -p yes
-          docker buildx create --name multiarch --driver docker-container --use --node ubuntu-nginx
+          docker buildx create --name multiarch --driver docker-container --use ---node buildx--platform=linux/arm/v7
           docker buildx inspect --bootstrap    
           docker buildx build --platform linux/arm/v7,linux/arm64 -t manfromdownunder/lancachenet-ubuntu-nginx --push .
           cd ..
@@ -85,7 +85,7 @@ jobs:
           sed -i '1cFROM manfromdownunder/lancachenet-generic' Dockerfile
           cat Dockerfile
           docker run --rm --privileged multiarch/qemu-user-static --reset -p yes
-          docker buildx create --name multiarch --driver docker-container --use --node monolithic
+          docker buildx create --name multiarch --driver docker-container --use ---node buildx--platform=linux/arm/v7
           docker buildx inspect --bootstrap    
           docker buildx build --platform linux/arm/v7,linux/arm64 -t manfromdownunder/lancachenet-monolithic --push .
           cd ..
@@ -96,7 +96,7 @@ jobs:
           sed -i '1cFROM manfromdownunder/lancachenet-ubuntu' Dockerfile
           cat Dockerfile
           docker run --rm --privileged multiarch/qemu-user-static --reset -p yes
-          docker buildx create --name multiarch --driver docker-container --use --node lancache-dns
+          docker buildx create --name multiarch --driver docker-container --use --node lancache-dns ---node buildx--platform=linux/arm/v7
           docker buildx inspect --bootstrap    
           docker buildx build --platform linux/arm/v7,linux/arm64 -t manfromdownunder/lancachenet-lancache-dns --push .
           cd ..
