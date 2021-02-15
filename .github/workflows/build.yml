@@ -48,7 +48,7 @@ jobs:
           cp ~/go/src/github.com/ddollar/forego/forego .
           sed -i 's/amd64/armhf/g' Dockerfile
           sed -i '18cADD ./forego /usr/local/bin/forego' Dockerfile
-          docker buildx build --platform linux/arm/v7 -t manfromdownunder/jwilder-nginx-proxy-armv7 --push .
+          docker buildx build --platform linux\armhf -t manfromdownunder/jwilder-nginx-proxy-armv7 --push .
           cd ..
           rm -rf nginx-proxy
           rm -rf ~/go/src/github.com/ddollar/forego/
@@ -56,7 +56,7 @@ jobs:
         run: |
           git clone https://github.com/lancachenet/ubuntu.git
           cd ubuntu
-          docker buildx build --platform linux/arm/v7,linux/arm64 -t manfromdownunder/lancachenet-ubuntu --push .
+          docker buildx build --platform linux\armhf -t manfromdownunder/lancachenet-ubuntu --push .
           cd ..
       - name: Build & Push lancachenet/ubuntu-nginx
         run: |
@@ -64,7 +64,7 @@ jobs:
           cd ubuntu-nginx
           sed -i '1cFROM manfromdownunder/lancachenet-ubuntu' Dockerfile
           cat Dockerfile
-          docker buildx build --platform linux/arm/v7,linux/arm64 -t manfromdownunder/lancachenet-ubuntu-nginx --push .
+          docker buildx build --platform linux\armhf -t manfromdownunder/lancachenet-ubuntu-nginx --push .
           cd ..
       - name: Build & Push lancachenet/generic
         run: |
@@ -73,7 +73,7 @@ jobs:
           sed -i '1cFROM manfromdownunder/lancachenet-ubuntu-nginx' Dockerfile
           cat Dockerfile
           sed -i '29cproxy_max_temp_file_size 1024m;' overlay/etc/nginx/sites-available/generic.conf.d/root/20_cache.conf
-          docker buildx build --platform linux/arm/v7,linux/arm64 -t manfromdownunder/lancachenet-generic --push .
+          docker buildx build --platform linux\armhf -t manfromdownunder/lancachenet-generic --push .
           cd ..
       - name: Build & Push lancachenet/monolithic
         run: |
@@ -81,7 +81,7 @@ jobs:
           cd monolithic
           sed -i '1cFROM manfromdownunder/lancachenet-generic' Dockerfile
           cat Dockerfile
-          docker buildx build --platform linux/arm/v7,linux/arm64 -t manfromdownunder/lancachenet-monolithic --push .
+          docker buildx build --platform linux\armhf -t manfromdownunder/lancachenet-monolithic --push .
           cd ..
       - name: Build & Push lancachenet/lancache-dns
         run: |
@@ -89,5 +89,5 @@ jobs:
           cd lancache-dns
           sed -i '1cFROM manfromdownunder/lancachenet-ubuntu' Dockerfile
           cat Dockerfile
-          docker buildx build --platform linux/arm/v7,linux/arm64 -t manfromdownunder/lancachenet-lancache-dns --push .
+          docker buildx build --platform linux\armhf -t manfromdownunder/lancachenet-lancache-dns --push .
           cd ..
