@@ -11,7 +11,8 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v1
+
+      - uses: actions/checkout@v2
       - name: Repo metadata
         id: repo
         uses: actions/github-script@v3
@@ -19,10 +20,13 @@ jobs:
           script: |
             const repo = await github.repos.get(context.repo)
             return repo.data
+
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v1
+
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v1
+
       - name: Cache Docker layers
         uses: actions/cache@v2
         with:
@@ -30,28 +34,31 @@ jobs:
           key: ${{ runner.os }}-buildx-${{ github.sha }}
           restore-keys: |
             ${{ runner.os }}-buildx-
+
       - name: Login to DockerHub
         uses: docker/login-action@v1.8.0
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_TOKEN }}
+
       - name: Build & Push jwilder/nginx-proxy for armv7
         run: |
-          go get -u github.com/ddollar/forego
-          cd ~/go/src/github.com/ddollar/forego/
-          export GOOS=linux
-          export GOARCH=arm
-          make
-          cd -
+#          go get -u github.com/ddollar/forego
+#          cd ~/go/src/github.com/ddollar/forego/
+#          export GOOS=linux
+#          export GOARCH=arm
+#          make
+#          cd -
           git clone https://github.com/jwilder/nginx-proxy.git
           cd nginx-proxy
-          cp ~/go/src/github.com/ddollar/forego/forego .
+#          cp ~/go/src/github.com/ddollar/forego/forego .
           sed -i 's/amd64/armhf/g' Dockerfile
-          sed -i '18cADD ./forego /usr/local/bin/forego' Dockerfile
+#          sed -i '18cADD ./forego /usr/local/bin/forego' Dockerfile
           docker buildx build --platform linux/arm/v7 -t manfromdownunder/jwilder-nginx-proxy-armv7 --push .
           cd ..
           rm -rf nginx-proxy
-          rm -rf ~/go/src/github.com/ddollar/forego/
+#          rm -rf ~/go/src/github.com/ddollar/forego/
+
       - name: Build & Push lancachenet/ubuntu
         run: |
           git clone https://github.com/lancachenet/ubuntu.git
@@ -61,6 +68,7 @@ jobs:
           docker buildx inspect --bootstrap    
           docker buildx build --platform linux/arm/v7,linux/arm64 -t manfromdownunder/lancachenet-ubuntu --push .
           cd ..
+
       - name: Build & Push lancachenet/ubuntu-nginx
         run: |
           git clone https://github.com/lancachenet/ubuntu-nginx.git
@@ -69,6 +77,7 @@ jobs:
           cat Dockerfile
           docker buildx build --platform linux/arm/v7,linux/arm64 -t manfromdownunder/lancachenet-ubuntu-nginx --push .
           cd ..
+
       - name: Build & Push lancachenet/generic
         run: |
           git clone https://github.com/lancachenet/generic.git
@@ -78,6 +87,7 @@ jobs:
           sed -i '29cproxy_max_temp_file_size 1024m;' overlay/etc/nginx/sites-available/generic.conf.d/root/20_cache.conf
           docker buildx build --platform linux/arm/v7,linux/arm64 -t manfromdownunder/lancachenet-generic --push .
           cd ..
+
       - name: Build & Push lancachenet/monolithic
         run: |
           git clone https://github.com/lancachenet/monolithic.git
@@ -86,6 +96,7 @@ jobs:
           cat Dockerfile
           docker buildx build --platform linux/arm/v7,linux/arm64 -t manfromdownunder/lancachenet-monolithic --push .
           cd ..
+
       - name: Build & Push lancachenet/lancache-dns
         run: |
           git clone https://github.com/lancachenet/lancache-dns.git
@@ -94,4 +105,3 @@ jobs:
           cat Dockerfile
           docker buildx build --platform linux/arm/v7,linux/arm64 -t manfromdownunder/lancachenet-lancache-dns --push .
           cd ..
-          
