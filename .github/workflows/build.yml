@@ -23,6 +23,9 @@ jobs:
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v1
+        with:
+          image: tonistiigi/binfmt:latest
+          platforms: all
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v1
@@ -57,7 +60,7 @@ jobs:
           docker run --rm --privileged multiarch/qemu-user-static --reset -p yes
           docker buildx create --name multiarch --driver docker-container --use
           docker buildx inspect --bootstrap    
-          docker buildx build -t manfromdownunder/lancachenet-ubuntu --push .
+          docker buildx build --platform linux/arm/v7,linux/arm64 -t manfromdownunder/lancachenet-ubuntu --push .
           cd ..
 
       - name: Build & Push lancachenet/ubuntu-nginx
