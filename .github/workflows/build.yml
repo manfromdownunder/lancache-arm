@@ -72,9 +72,9 @@ jobs:
           docker buildx build --platform linux/arm/v7,linux/arm64 -t manfromdownunder/lancachenet-ubuntu-nginx --push .
           cd ..
 
-      - name: Build & Push lancachenet/generic
+      - name: Build & Push manfromdownunder/generic
         run: |
-          git clone https://github.com/lancachenet/generic.git
+          git clone https://github.com/manfromdownunder/generic.git
           cd generic
           sed -i '1cFROM manfromdownunder/lancachenet-ubuntu-nginx' Dockerfile
           cat Dockerfile
@@ -93,7 +93,7 @@ jobs:
 
       - name: Build & Push lancachenet/lancache-dns
         run: |
-          git clone https://github.com/lancachenet/lancache-dns.git
+          git clone https://github.com/manfromdownunder/lancache-dns.git
           cd lancache-dns
           sed -i '1cFROM manfromdownunder/lancachenet-ubuntu' Dockerfile
           cat Dockerfile
