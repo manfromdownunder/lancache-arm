@@ -2,7 +2,7 @@ name: Build
 
 on:
   schedule:
-    # update the images every morning
+    # update the images every morning #
     - cron: "0 0 * * *"
   push:
   pull_request:
